@@ -1,28 +1,15 @@
-function stars(n, max = 5) {
-  const v = Math.max(0, Math.min(Number(n) || 0, max));
+function normalize(str){ return (str || "").toString().trim().toLowerCase(); }
+
+function teamKey(team){
+  const t = normalize(team);
+  if(t.includes("alpha")) return "alpha";
+  if(t.includes("bravo")) return "bravo";
+  return "joker";
+}
+
+function stars(n, max=5){
+  const v = Math.max(0, Math.min(Number(n)||0, max));
   return "★".repeat(v) + "☆".repeat(max - v);
-}
-
-function normalize(str){
-  return (str || "").toString().trim().toLowerCase();
-}
-
-function sortPlayers(players, mode){
-  const p = [...players];
-  if(mode === "name"){
-    return p.sort((a,b)=> a.name.localeCompare(b.name));
-  }
-  if(mode === "xp"){
-    return p.sort((a,b)=> (b.xp||0)-(a.xp||0) || a.name.localeCompare(b.name));
-  }
-  if(mode === "challenges"){
-    return p.sort((a,b)=> (b.challengeWins||0)-(a.challengeWins||0) || (b.xp||0)-(a.xp||0) || a.name.localeCompare(b.name));
-  }
-  if(mode === "seasonStars"){
-    return p.sort((a,b)=> (b.seasonStars||0)-(a.seasonStars||0) || (b.xp||0)-(a.xp||0) || a.name.localeCompare(b.name));
-  }
-  // default: level from XP (derived) then xp
-  return p.sort((a,b)=> (deriveLevel(b.xp||0, window.__levelXP)-deriveLevel(a.xp||0, window.__levelXP)) || (b.xp||0)-(a.xp||0) || a.name.localeCompare(b.name));
 }
 
 function deriveLevel(xp, levelXP){
@@ -37,164 +24,161 @@ function deriveLevel(xp, levelXP){
 
 function levelProgress(xp, levelXP){
   const x = Math.max(0, Number(xp) || 0);
-  const thresholds = Array.isArray(levelXP) && levelXP.length >= 2 ? levelXP : [0, 100];
+  const t = Array.isArray(levelXP) && levelXP.length >= 2 ? levelXP : [0, 100];
 
   let idx = 0;
-  for(let i=0; i<thresholds.length; i++){
-    if(x >= thresholds[i]) idx = i;
+  for(let i=0;i<t.length;i++){
+    if(x >= t[i]) idx = i;
   }
-
   const level = idx + 1;
-  const curStart = thresholds[idx];
-  const nextStart = thresholds[idx + 1];
+  const curStart = t[idx];
+  const nextStart = t[idx + 1];
 
   if(nextStart === undefined){
-    return { level, curStart, nextStart: curStart, inLevel: 0, need: 0, pct: 100, maxed: true };
+    return { level, pct: 100, inLevel: 0, span: 0, need: 0, maxed: true };
   }
-
   const span = Math.max(1, nextStart - curStart);
   const inLevel = x - curStart;
   const need = Math.max(0, nextStart - x);
   const pct = Math.max(0, Math.min(100, Math.round((inLevel / span) * 100)));
-
-  return { level, curStart, nextStart, inLevel, need, pct, maxed: false };
+  return { level, pct, inLevel, span, need, maxed: false };
 }
 
-function teamKey(team){
-  const t = (team || "").toLowerCase();
-  if(t.includes("alpha")) return "alpha";
-  if(t.includes("bravo")) return "bravo";
-  return "joker";
+function sortPlayers(players, mode, levelXP){
+  const p = [...players];
+  if(mode === "name") return p.sort((a,b)=> a.name.localeCompare(b.name));
+  if(mode === "xp") return p.sort((a,b)=> (b.xp||0)-(a.xp||0) || a.name.localeCompare(b.name));
+  if(mode === "challenges") return p.sort((a,b)=> (b.challengeWins||0)-(a.challengeWins||0) || (b.xp||0)-(a.xp||0) || a.name.localeCompare(b.name));
+  // default: derived level then xp
+  return p.sort((a,b)=> (deriveLevel(b.xp, levelXP)-deriveLevel(a.xp, levelXP)) || ((b.xp||0)-(a.xp||0)) || a.name.localeCompare(b.name));
 }
 
-function teamBadgeClass(team){
-  const t = teamKey(team);
-  if(t === "alpha") return "team-alpha";
-  if(t === "bravo") return "team-bravo";
-  return "team-joker";
+function groupPlayers(list){
+  const groups = { "Alpha Team": [], "Team Bravo": [], "Joker": [] };
+  list.forEach(p=>{
+    const k = teamKey(p.team);
+    if(k==="alpha") groups["Alpha Team"].push(p);
+    else if(k==="bravo") groups["Team Bravo"].push(p);
+    else groups["Joker"].push(p);
+  });
+  return groups;
 }
 
-function teamLabel(team){
-  return team || "Joker";
-}
+const SKILLS = [
+  { key:"DEF", label:"Defensivmonster" },
+  { key:"TOR", label:"Tormaschine" },
+  { key:"MAS", label:"Maschine" },
+  { key:"ANF", label:"Anführer" },
+  { key:"PLY", label:"Playmaker" }
+];
 
-fetch("data.json", { cache: "no-store" })
-  .then(r => r.json())
-  .then(data => {
-    // store for sort helper
-    window.__levelXP = data.levelXP;
+fetch("data.json", { cache:"no-store" })
+  .then(r=>r.json())
+  .then(data=>{
+    document.getElementById("cycle-info").textContent =
+      `${data.cycle.name} | ${data.cycle.start} - ${data.cycle.end}`;
 
-    const cycleInfo = document.getElementById("cycle-info");
-    if(cycleInfo){
-      cycleInfo.textContent = `${data.cycle.name} | ${data.cycle.start} - ${data.cycle.end}`;
-    }
+    const players = data.players || [];
+    const levelXP = data.levelXP || [0,100];
 
     const container = document.getElementById("players-page-container");
     const summary = document.getElementById("players-summary");
     const search = document.getElementById("player-search");
     const sort = document.getElementById("sort");
 
-    // filter chips
     let teamFilter = "all";
     const chips = Array.from(document.querySelectorAll(".chip"));
-    chips.forEach(btn => {
-      btn.addEventListener("click", () => {
-        chips.forEach(b => b.classList.remove("active"));
+    chips.forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        chips.forEach(b=>b.classList.remove("active"));
         btn.classList.add("active");
         teamFilter = btn.getAttribute("data-team");
         render();
       });
     });
 
-    const players = data.players || [];
-
     function calcSummary(list){
       const total = list.length;
-      const xpSum = list.reduce((s,p)=> s + (Number(p.xp)||0), 0);
-      const avgXP = total ? Math.round(xpSum / total) : 0;
-      const avgLevel = total ? Math.round(list.reduce((s,p)=> s + deriveLevel(p.xp||0, data.levelXP), 0) / total) : 0;
-      return { total, avgXP, avgLevel };
-    }
-
-    function groupPlayers(list){
-      const groups = { "Alpha Team": [], "Team Bravo": [], "Joker": [] };
-      list.forEach(p=>{
-        const key = teamKey(p.team);
-        if(key === "alpha") groups["Alpha Team"].push(p);
-        else if(key === "bravo") groups["Team Bravo"].push(p);
-        else groups["Joker"].push(p);
-      });
-      return groups;
+      const avgXP = total ? Math.round(list.reduce((s,p)=> s+(Number(p.xp)||0),0)/total) : 0;
+      const avgLvl = total ? Math.round(list.reduce((s,p)=> s+deriveLevel(p.xp, levelXP),0)/total) : 0;
+      return `${total} Spieler · Ø Level ${avgLvl} · Ø ${avgXP} XP`;
     }
 
     function render(){
       const term = normalize(search.value);
 
-      // base filter
-      let filtered = players.filter(p => normalize(p.name).includes(term));
-
-      // team filter
+      let filtered = players.filter(p=> normalize(p.name).includes(term));
       if(teamFilter !== "all"){
         filtered = filtered.filter(p => (p.team || "Joker") === teamFilter);
       }
 
-      // summary
-      const s = calcSummary(filtered);
-      summary.textContent = `${s.total} Spieler · Ø Level ${s.avgLevel} · Ø ${s.avgXP} XP`;
+      summary.textContent = calcSummary(filtered);
 
-      // sort inside groups
-      const sorted = sortPlayers(filtered, sort.value);
-
+      const sorted = sortPlayers(filtered, sort.value, levelXP);
       const grouped = groupPlayers(sorted);
 
-      const sections = Object.entries(grouped).map(([teamName, list]) => {
-        if(list.length === 0) return "";
+      const html = Object.entries(grouped).map(([teamName, list])=>{
+        if(!list.length) return "";
+        const key = teamKey(teamName);
 
-        const tKey = teamKey(teamName);
-        const niceTeam = teamLabel(teamName);
-        const pill = `${list.length} Spieler`;
-
-        const cards = list.map(p => {
-          const xp = Number(p.xp) || 0;
-          const prog = levelProgress(xp, data.levelXP);
+        const cards = list.map(p=>{
+          const xp = Number(p.xp)||0;
+          const prog = levelProgress(xp, levelXP);
           const lvl = prog.level;
-          const span = Math.max(1, prog.nextStart - prog.curStart);
 
-          const skill = p.skills || { DEF:0, ANG:0, AUS:0, INT:0, MEN:0 };
-          const badgeClass = teamBadgeClass(p.team);
+          const season = p.seasonSkills || { DEF:0,TOR:0,MAS:0,ANF:0,PLY:0 };
+          const alltime = p.allTimeSkills || { DEF:0,TOR:0,MAS:0,ANF:0,PLY:0 };
+
+          const skillRows = SKILLS.map(s=>{
+            const ss = Number(season[s.key])||0;
+            const at = Number(alltime[s.key])||0;
+            return `
+              <div class="skill-row">
+                <div class="name">${s.label}</div>
+                <div class="bars">
+                  <div class="skill-chip">Season: <span class="stars">${stars(ss)}</span> <span style="opacity:.8">(${ss}/5)</span></div>
+                  <div class="skill-chip">All-Time: <span class="stars">${stars(at)}</span> <span style="opacity:.8">(${at}/5)</span></div>
+                </div>
+              </div>
+            `;
+          }).join("");
 
           return `
-            <div class="player-card ${tKey}">
+            <div class="player-card ${key}">
               <div class="player-top">
-                <div>
-                  <div class="player-name">${p.name}</div>
-                  <div class="badges">
-                    <span class="badge ${badgeClass}">${p.team || "Joker"}</span>
-                    <span class="badge">Level ${lvl}</span>
-                    <span class="badge">${xp} XP</span>
-                    <span class="badge">Challenge: ${p.challengeWins ?? 0}</span>
-                    <span class="badge">Season ⭐: ${p.seasonStars ?? 0}</span>
-                  </div>
+                <div class="player-name">${p.name}</div>
+                <div class="badge-team ${key}">${p.team || "Joker"}</div>
+              </div>
+
+              <div class="big-row">
+                <div class="big-kpi">
+                  <div class="label">LEVEL</div>
+                  <div class="value">${lvl}</div>
+                  <div class="sub">${prog.maxed ? "Max Level" : `noch ${prog.need} XP bis Level ${lvl+1}`}</div>
+                </div>
+
+                <div class="big-kpi">
+                  <div class="label">XP</div>
+                  <div class="value">${xp}</div>
+                  <div class="sub">${prog.maxed ? "—" : `${prog.inLevel}/${prog.span} im Level`}</div>
+                </div>
+
+                <div class="big-kpi">
+                  <div class="label">CHALLENGE SIEGE</div>
+                  <div class="value">${p.challengeWins ?? 0}</div>
+                  <div class="sub">persönliche Statistik</div>
                 </div>
               </div>
 
               <div class="xpbar"><div class="xpfill" style="width:${prog.pct}%"></div></div>
-              <div class="small">
-                ${prog.maxed
-                  ? `Max Level erreicht ✅`
-                  : `Fortschritt: ${prog.pct}% · ${prog.inLevel}/${span} XP · noch ${prog.need} XP bis Level ${lvl + 1}`}
-              </div>
+              <div class="small">${prog.maxed ? "Max Level erreicht ✅" : `Level-Fortschritt: ${prog.pct}%`}</div>
 
-              <details>
-                <summary>Skills anzeigen</summary>
-                <div class="skills">
-                  <div class="skill">🧱 DEF <span class="stars">${stars(skill.DEF)}</span></div>
-                  <div class="skill">⚡ ANG <span class="stars">${stars(skill.ANG)}</span></div>
-                  <div class="skill">🫀 AUS <span class="stars">${stars(skill.AUS)}</span></div>
-                  <div class="skill">🧠 INT <span class="stars">${stars(skill.INT)}</span></div>
-                  <div class="skill">🔥 MEN <span class="stars">${stars(skill.MEN)}</span></div>
+              <div class="skill-block">
+                <div class="skill-title">⭐ Skills (Season & All-Time)</div>
+                <div class="skill-grid">
+                  ${skillRows}
                 </div>
-              </details>
+              </div>
             </div>
           `;
         }).join("");
@@ -202,17 +186,15 @@ fetch("data.json", { cache: "no-store" })
         return `
           <div class="group">
             <div class="group-head">
-              <h3>${niceTeam}</h3>
-              <span class="group-pill">${pill}</span>
+              <h3>${teamName}</h3>
+              <span class="group-pill">${list.length} Spieler</span>
             </div>
-            <div class="player-grid">
-              ${cards}
-            </div>
+            <div class="player-grid">${cards}</div>
           </div>
         `;
       }).join("");
 
-      container.innerHTML = sections || `<p class="muted">Keine Spieler gefunden.</p>`;
+      container.innerHTML = html || `<div class="muted">Keine Spieler gefunden.</div>`;
     }
 
     search.addEventListener("input", render);
