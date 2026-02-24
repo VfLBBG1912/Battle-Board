@@ -18,8 +18,42 @@ function sortPlayers(players, mode){
   if(mode === "seasonStars"){
     return p.sort((a,b)=> (b.seasonStars||0)-(a.seasonStars||0) || (b.level||0)-(a.level||0) || a.name.localeCompare(b.name));
   }
-  // default: level
   return p.sort((a,b)=> (b.level||0)-(a.level||0) || (b.xp||0)-(a.xp||0) || a.name.localeCompare(b.name));
+}
+
+// Level Progress Helper (Variante B)
+function levelProgress(xp, levelXP){
+  const x = Math.max(0, Number(xp) || 0);
+  const thresholds = Array.isArray(levelXP) && levelXP.length >= 2 ? levelXP : [0, 100];
+
+  // Find current level by thresholds
+  let idx = 0;
+  for(let i=0; i<thresholds.length; i++){
+    if(x >= thresholds[i]) idx = i;
+  }
+
+  const level = idx + 1;
+  const curStart = thresholds[idx];
+  const nextStart = thresholds[idx + 1];
+
+  if(nextStart === undefined){
+    return {
+      level,
+      curStart,
+      nextStart: curStart,
+      inLevel: 0,
+      need: 0,
+      pct: 100,
+      maxed: true
+    };
+  }
+
+  const span = Math.max(1, nextStart - curStart);
+  const inLevel = x - curStart;
+  const need = Math.max(0, nextStart - x);
+  const pct = Math.max(0, Math.min(100, Math.round((inLevel / span) * 100)));
+
+  return { level, curStart, nextStart, inLevel, need, pct, maxed: false };
 }
 
 fetch("data.json", { cache: "no-store" })
@@ -37,20 +71,36 @@ fetch("data.json", { cache: "no-store" })
     const render = () => {
       const term = normalize(search.value);
       const sorted = sortPlayers(data.players || [], sort.value);
-
       const filtered = sorted.filter(p => normalize(p.name).includes(term));
 
       container.innerHTML = filtered.map(p => {
         const s = p.skills || {};
+        const xp = Number(p.xp) || 0;
+
+        // Progress inside level using levelXP thresholds
+        const prog = levelProgress(xp, data.levelXP);
+        const shownLevel = prog.level; // Level wird aus XP berechnet
+
+        const levelSpan = Math.max(1, prog.nextStart - prog.curStart);
+
         return `
           <div class="player">
             <div><strong>${p.name}</strong> <span class="badge2">Team ${p.team || "-"}</span></div>
+
             <div class="badges">
-              <span class="badge2">Level ${p.level ?? 0}</span>
-              <span class="badge2">${p.xp ?? 0} XP</span>
+              <span class="badge2">Level ${shownLevel}</span>
+              <span class="badge2">${xp} XP</span>
               <span class="badge2">Challenge Siege: ${p.challengeWins ?? 0}</span>
               <span class="badge2">Season ⭐: ${p.seasonStars ?? 0}</span>
             </div>
+
+            <div class="xpbar"><div class="xpfill" style="width:${prog.pct}%"></div></div>
+            <div class="small" style="opacity:.85">
+              ${prog.maxed
+                ? `Max Level erreicht ✅`
+                : `Level-Fortschritt: ${prog.pct}% · ${prog.inLevel} / ${levelSpan} XP (noch ${prog.need} XP bis Level ${shownLevel + 1})`}
+            </div>
+
             <div class="badges">
               <span class="badge2">🧱 DEF <span class="stars">${stars(s.DEF)}</span></span>
               <span class="badge2">⚡ ANG <span class="stars">${stars(s.ANG)}</span></span>
