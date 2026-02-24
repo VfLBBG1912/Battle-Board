@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Battle Board</title>
+  <title>Dashboard – Battle Board</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <header>
-  <h1>🏆 4-Wochen Battle Board</h1>
+  <h1>🏆 Dashboard</h1>
   <p id="cycle-info"></p>
 
   <nav class="tabs">
@@ -19,20 +19,52 @@
   </nav>
 </header>
 
-<section class="card">
-  <h2>⚔️ Team Stand</h2>
-  <div id="team-container"></div>
-</section>
+<main class="page">
+  <!-- Team Stand -->
+  <section class="card">
+    <div class="dash-head">
+      <div>
+        <h2>⚔️ Team Stand</h2>
+        <div class="muted" id="dash-subtitle">Lade Daten…</div>
+      </div>
+      <div class="pill" id="cycle-pill">Battle Cycle</div>
+    </div>
 
-<section class="card">
-  <h2>🎮 Spieler Ranking (Level/XP)</h2>
-  <div id="player-container"></div>
-</section>
+    <div class="team-grid" id="team-container"></div>
+  </section>
 
-<section class="card">
-  <h2>🔥 Letzte Updates</h2>
-  <div id="updates-container"></div>
-</section>
+  <!-- Top Listen -->
+  <section class="card">
+    <h2>🥇 Top Spieler</h2>
+    <div class="muted">Live-Ranking aus XP / Level / Challenges</div>
+
+    <div class="top-grid">
+      <div class="top-card">
+        <div class="top-title">⭐ Top Level</div>
+        <div id="top-level"></div>
+      </div>
+
+      <div class="top-card">
+        <div class="top-title">⚡ Top XP</div>
+        <div id="top-xp"></div>
+      </div>
+
+      <div class="top-card">
+        <div class="top-title">🎯 Top Challenges</div>
+        <div id="top-challenges"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Updates -->
+  <section class="card">
+    <div class="dash-head">
+      <h2>🔥 Letzte Updates</h2>
+      <a class="link" href="players.html">→ zu den Spielern</a>
+    </div>
+    <div id="updates-container" class="feed"></div>
+  </section>
+</main>
 
 <footer>
   <p>Battle Mode Activated ⚽</p>
