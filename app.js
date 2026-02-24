@@ -23,6 +23,11 @@ function teamKey(name){
   return "joker";
 }
 
+function sumSeasonSkills(p){
+  const s = p.seasonSkills || {};
+  return (Number(s.DEF)||0) + (Number(s.TOR)||0) + (Number(s.MAS)||0) + (Number(s.ANF)||0) + (Number(s.PLY)||0);
+}
+
 function renderTopList(containerId, players, valueFn, labelFn){
   const el = document.getElementById(containerId);
   const sorted = [...players]
@@ -57,6 +62,7 @@ fetch("data.json", { cache: "no-store" })
     document.getElementById("dash-subtitle").textContent =
       `${players.length} Spieler · Ø ${avgXP} XP · ${teams.map(t=>t.name).join(" vs ")}`;
 
+    // Team Stand
     const teamA = teams[0] || { name:"Team A", points:0 };
     const teamB = teams[1] || { name:"Team B", points:0 };
 
@@ -86,6 +92,7 @@ fetch("data.json", { cache: "no-store" })
 
     teamContainer.innerHTML = teamCard(teamA, aPct) + teamCard(teamB, bPct);
 
+    // Top Spieler
     renderTopList(
       "top-level",
       players,
@@ -93,11 +100,12 @@ fetch("data.json", { cache: "no-store" })
       (p)=> `Level ${deriveLevel(p.xp, data.levelXP)}`
     );
 
+    // NEU: Top Season Skills (statt Top XP)
     renderTopList(
-      "top-xp",
+      "top-season-skills",
       players,
-      (p)=> Number(p.xp)||0,
-      (p)=> `${Number(p.xp)||0} XP`
+      (p)=> sumSeasonSkills(p),
+      (p)=> `${sumSeasonSkills(p)} Season-Skills`
     );
 
     renderTopList(
@@ -107,6 +115,7 @@ fetch("data.json", { cache: "no-store" })
       (p)=> `${Number(p.challengeWins)||0} Siege`
     );
 
+    // Updates
     const updates = data.recent || [];
     const updatesContainer = document.getElementById("updates-container");
     updatesContainer.innerHTML = updates.length
