@@ -1,61 +1,49 @@
 {
-  "cycle": { "name": "Battle Cycle 01", "start": "01.03.2026", "end": "31.03.2026" },
+  "cycle": {
+    "name": "Battle Cycle 01",
+    "start": "01.03.2026",
+    "end": "31.03.2026"
+  },
 
-  "levelXP": [0, 20, 45, 75, 110, 150, 200, 260, 330, 410, 500],
+  "levelXP": [0, 20, 45, 75, 110, 150, 200, 260, 330, 410, 500, 600, 720],
 
   "teams": [
-    { "id": "A", "name": "Team Black", "points": 42 },
-    { "id": "B", "name": "Team Red", "points": 38 }
+    { "id": "A", "name": "Alpha Team", "points": 0 },
+    { "id": "B", "name": "Team Bravo", "points": 0 }
   ],
 
   "players": [
-    {
-      "name": "Leon",
-      "team": "A",
-      "xp": 120,
-      "level": 5,
-      "challengeWins": 4,
-      "seasonStars": 1,
-      "skills": { "DEF": 3, "ANG": 1, "AUS": 4, "INT": 2, "MEN": 3 }
-    },
-    {
-      "name": "Max",
-      "team": "B",
-      "xp": 105,
-      "level": 4,
-      "challengeWins": 3,
-      "seasonStars": 0,
-      "skills": { "DEF": 2, "ANG": 4, "AUS": 2, "INT": 3, "MEN": 2 }
-    },
-    {
-      "name": "Jonas",
-      "team": "A",
-      "xp": 95,
-      "level": 4,
-      "challengeWins": 2,
-      "seasonStars": 0,
-      "skills": { "DEF": 2, "ANG": 2, "AUS": 3, "INT": 2, "MEN": 2 }
-    },
-    {
-      "name": "Tim",
-      "team": "B",
-      "xp": 88,
-      "level": 3,
-      "challengeWins": 1,
-      "seasonStars": 0,
-      "skills": { "DEF": 1, "ANG": 3, "AUS": 2, "INT": 2, "MEN": 2 }
-    }
+    { "name": "David", "team": "Alpha Team", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Daniel", "team": "Alpha Team", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Leon", "team": "Alpha Team", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Noel", "team": "Alpha Team", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Imran", "team": "Alpha Team", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Sören", "team": "Alpha Team", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Jan", "team": "Alpha Team", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Bennet", "team": "Alpha Team", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Erich", "team": "Alpha Team", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Hauke", "team": "Alpha Team", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Lars", "team": "Alpha Team", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+
+    { "name": "Steffen", "team": "Team Bravo", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Max", "team": "Team Bravo", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Rille", "team": "Team Bravo", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Tim", "team": "Team Bravo", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Pascal", "team": "Team Bravo", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Joey", "team": "Team Bravo", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Justin", "team": "Team Bravo", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Kilian", "team": "Team Bravo", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Klemens", "team": "Team Bravo", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Maurice", "team": "Team Bravo", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Ferhat", "team": "Team Bravo", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+
+    { "name": "Bastian", "team": "Joker", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } },
+    { "name": "Raoul", "team": "Joker", "xp": 0, "challengeWins": 0, "seasonStars": 0, "skills": { "DEF": 0, "ANG": 0, "AUS": 0, "INT": 0, "MEN": 0 } }
   ],
 
-  "recent": [
-    { "date": "05.03.2026", "text": "Team Black gewinnt Abschlussspiel (+5)" },
-    { "date": "05.03.2026", "text": "Leon gewinnt Challenge gegen Max (+1 Team, +1 Sieg)" }
-  ],
+  "recent": [],
 
   "hof": {
-    "players": [
-      { "name": "Leon", "maxLevel": 7, "maxXP": 210, "seasonStars": 2, "challengeWins": 11 },
-      { "name": "Max", "maxLevel": 6, "maxXP": 180, "seasonStars": 1, "challengeWins": 8 }
-    ]
+    "players": []
   }
 }
