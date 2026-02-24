@@ -26,7 +26,6 @@ function levelProgress(xp, levelXP){
   const x = Math.max(0, Number(xp) || 0);
   const thresholds = Array.isArray(levelXP) && levelXP.length >= 2 ? levelXP : [0, 100];
 
-  // Find current level by thresholds
   let idx = 0;
   for(let i=0; i<thresholds.length; i++){
     if(x >= thresholds[i]) idx = i;
@@ -77,15 +76,23 @@ fetch("data.json", { cache: "no-store" })
         const s = p.skills || {};
         const xp = Number(p.xp) || 0;
 
-        // Progress inside level using levelXP thresholds
+        // Progress inside level
         const prog = levelProgress(xp, data.levelXP);
-        const shownLevel = prog.level; // Level wird aus XP berechnet
-
+        const shownLevel = prog.level;
         const levelSpan = Math.max(1, prog.nextStart - prog.curStart);
 
+        // Team-Klasse für Farben
+        const teamName = (p.team || "").toLowerCase();
+        let teamClass = "team-joker";
+        if (teamName.includes("alpha")) teamClass = "team-alpha";
+        else if (teamName.includes("bravo")) teamClass = "team-bravo";
+
         return `
-          <div class="player">
-            <div><strong>${p.name}</strong> <span class="badge2">Team ${p.team || "-"}</span></div>
+          <div class="player ${teamClass}">
+            <div>
+              <strong>${p.name}</strong>
+              <span class="badge2 ${teamClass}">Team ${p.team || "-"}</span>
+            </div>
 
             <div class="badges">
               <span class="badge2">Level ${shownLevel}</span>
