@@ -139,3 +139,41 @@ footer {
   width: 0%;
   background: linear-gradient(90deg, #22c55e, #3b82f6);
 }
+
+/* -------- Team Farben (Visuelle Trennung) -------- */
+.player.team-alpha{
+  border-left: 6px solid #3b82f6;           /* Blau */
+  background: rgba(59,130,246,0.08);
+  padding-left: 12px;
+  border-radius: 10px;
+}
+
+.player.team-bravo{
+  border-left: 6px solid #ef4444;           /* Rot */
+  background: rgba(239,68,68,0.08);
+  padding-left: 12px;
+  border-radius: 10px;
+}
+
+.player.team-joker{
+  border-left: 6px solid #f59e0b;           /* Orange */
+  background: rgba(245,158,11,0.10);
+  padding-left: 12px;
+  border-radius: 10px;
+}
+
+/* Badge Farben je Team */
+.badge2.team-alpha{
+  border-color: rgba(59,130,246,0.6);
+  color: #dbeafe;
+}
+
+.badge2.team-bravo{
+  border-color: rgba(239,68,68,0.6);
+  color: #fee2e2;
+}
+
+.badge2.team-joker{
+  border-color: rgba(245,158,11,0.7);
+  color: #ffedd5;
+}
