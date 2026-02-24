@@ -1,57 +1,60 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #0f172a;
-    color: white;
-    margin: 0;
-    padding: 0;
+:root{
+  --bg:#0f172a;
+  --card:#1e293b;
+  --muted:#94a3b8;
+  --line:#334155;
+  --ink:#ffffff;
+  --chip:#0b1220;
+
+  --alpha:#3b82f6;
+  --bravo:#ef4444;
+  --joker:#f59e0b;
+  --xp1:#22c55e;
+  --xp2:#3b82f6;
 }
 
-header {
-    text-align: center;
-    padding: 20px;
-    background: #1e293b;
+*{ box-sizing:border-box; }
+
+body{
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
-    margin: 0;
+header{
+  text-align: center;
+  padding: 18px 16px 12px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
 }
 
-.card {
-    background: #1e293b;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 10px;
+h1{ margin: 0; }
+#cycle-info{ margin: 8px 0 0; color: var(--muted); }
+
+.page{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px;
 }
 
-.team {
-    margin-bottom: 15px;
+.card{
+  background: var(--card);
+  margin: 12px 0;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
 }
 
-.progress-bar {
-    background: #334155;
-    border-radius: 20px;
-    overflow: hidden;
-    height: 20px;
-    margin-top: 5px;
+footer{
+  text-align: center;
+  padding: 18px 10px;
+  opacity: 0.75;
+  color: var(--muted);
 }
 
-.progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #3b82f6, #9333ea);
-}
-
-.player {
-    border-bottom: 1px solid #334155;
-    padding: 10px 0;
-}
-
-footer {
-    text-align: center;
-    padding: 20px;
-    opacity: 0.7;
-}
-
-/* -------- Tabs / Navigation -------- */
+/* Tabs */
 .tabs{
   display:flex;
   gap:8px;
@@ -63,117 +66,216 @@ footer {
 .tab{
   text-decoration:none;
   color:#cbd5e1;
-  border:1px solid #334155;
+  border:1px solid var(--line);
   padding:8px 12px;
   border-radius:999px;
-  background:#0b1220;
+  background: var(--chip);
   font-weight:700;
   font-size:14px;
 }
 
 .tab.active{
   color:white;
-  border-color:#3b82f6;
+  border-color: var(--alpha);
   box-shadow:0 0 0 2px rgba(59,130,246,0.15) inset;
 }
 
-.hint{
-  opacity:0.8;
-  margin-bottom:12px;
+/* Top controls */
+.players-top{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
 
-/* -------- Toolbar (Suche/Sort) -------- */
-.toolbar{
+.players-title h2{
+  margin: 0 0 6px;
+}
+
+.muted{
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.controls{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
-  margin:10px 0 16px 0;
 }
 
 .search, .select{
   padding:10px 12px;
-  border-radius:10px;
-  border:1px solid #334155;
-  background:#0b1220;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background: var(--chip);
   color:white;
   outline:none;
 }
 
-.search{ flex:1; min-width:220px; }
-.select{ min-width:220px; }
+.search{ flex:1; min-width:240px; }
+.select{ min-width:240px; }
 
-/* -------- Badges / Sterne -------- */
+/* Filter chips */
+.chips{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.chip{
+  cursor:pointer;
+  border:1px solid var(--line);
+  background: var(--chip);
+  color:#cbd5e1;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:13px;
+}
+
+.chip.active{
+  color:#fff;
+  border-color: rgba(255,255,255,0.35);
+}
+
+.chip-alpha{ border-color: rgba(59,130,246,0.55); }
+.chip-bravo{ border-color: rgba(239,68,68,0.55); }
+.chip-joker{ border-color: rgba(245,158,11,0.65); }
+
+/* Group headings */
+.group{
+  margin-top: 10px;
+}
+
+.group-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:10px;
+  padding: 10px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.03);
+}
+
+.group-head h3{
+  margin:0;
+  font-size:16px;
+}
+
+.group-pill{
+  font-size:12px;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  color:#cbd5e1;
+  background: var(--chip);
+}
+
+/* Player grid */
+.player-grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+@media(min-width: 860px){
+  .player-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Player card */
+.player-card{
+  border:1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255,255,255,0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.player-card.alpha{ border-left: 6px solid var(--alpha); }
+.player-card.bravo{ border-left: 6px solid var(--bravo); }
+.player-card.joker{ border-left: 6px solid var(--joker); }
+
+.player-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.player-name{
+  font-weight:800;
+  font-size:16px;
+}
+
 .badges{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
-  margin-top:8px;
-}
-
-.badge2{
-  font-size:12px;
-  padding:4px 8px;
-  border:1px solid #334155;
-  border-radius:999px;
-  color:#cbd5e1;
-  background:#0b1220;
-}
-
-.stars{
-  letter-spacing:1px;
-  font-size:14px;
-  white-space:nowrap;
-}
-
-/* -------- XP Progress (Variante B) -------- */
-.xpbar{
-  height: 10px;
-  background: #334155;
-  border-radius: 999px;
-  overflow: hidden;
   margin-top: 8px;
 }
 
+.badge{
+  font-size:12px;
+  padding:4px 8px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:#cbd5e1;
+  background: var(--chip);
+  white-space:nowrap;
+}
+
+.badge.team-alpha{ border-color: rgba(59,130,246,0.6); color: #dbeafe; }
+.badge.team-bravo{ border-color: rgba(239,68,68,0.6); color: #fee2e2; }
+.badge.team-joker{ border-color: rgba(245,158,11,0.7); color: #ffedd5; }
+
+/* XP bar */
+.xpbar{
+  height: 10px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 10px;
+}
 .xpfill{
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #22c55e, #3b82f6);
+  background: linear-gradient(90deg, var(--xp1), var(--xp2));
 }
 
-/* -------- Team Farben (Visuelle Trennung) -------- */
-.player.team-alpha{
-  border-left: 6px solid #3b82f6;           /* Blau */
-  background: rgba(59,130,246,0.08);
-  padding-left: 12px;
-  border-radius: 10px;
+.small{
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
-.player.team-bravo{
-  border-left: 6px solid #ef4444;           /* Rot */
-  background: rgba(239,68,68,0.08);
-  padding-left: 12px;
-  border-radius: 10px;
+/* Skills details */
+details{
+  margin-top: 10px;
 }
-
-.player.team-joker{
-  border-left: 6px solid #f59e0b;           /* Orange */
-  background: rgba(245,158,11,0.10);
-  padding-left: 12px;
-  border-radius: 10px;
+summary{
+  cursor:pointer;
+  font-weight:700;
+  color:#e2e8f0;
 }
-
-/* Badge Farben je Team */
-.badge2.team-alpha{
-  border-color: rgba(59,130,246,0.6);
-  color: #dbeafe;
+.skills{
+  margin-top: 8px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
 }
-
-.badge2.team-bravo{
-  border-color: rgba(239,68,68,0.6);
-  color: #fee2e2;
+.skill{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius: 12px;
+  border:1px solid var(--line);
+  background: var(--chip);
+  color:#cbd5e1;
 }
-
-.badge2.team-joker{
-  border-color: rgba(245,158,11,0.7);
-  color: #ffedd5;
+.stars{
+  letter-spacing: 1px;
+  margin-left: 6px;
+  color: #fff;
 }
