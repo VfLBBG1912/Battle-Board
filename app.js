@@ -1,6 +1,4 @@
-function normalize(str){
-  return (str || "").toString().trim().toLowerCase();
-}
+function normalize(str){ return (str || "").toString().trim().toLowerCase(); }
 
 function deriveLevel(xp, levelXP){
   const x = Math.max(0, Number(xp) || 0);
@@ -46,23 +44,19 @@ function renderTopList(containerId, players, valueFn, labelFn){
 fetch("data.json", { cache: "no-store" })
   .then(r => r.json())
   .then(data => {
-    // Cycle info
-    const cycleInfo = document.getElementById("cycle-info");
-    if(cycleInfo){
-      cycleInfo.textContent = `${data.cycle.name} | ${data.cycle.start} - ${data.cycle.end}`;
-    }
+    document.getElementById("cycle-info").textContent =
+      `${data.cycle.name} | ${data.cycle.start} - ${data.cycle.end}`;
     document.getElementById("cycle-pill").textContent = data.cycle.name;
 
     const teams = data.teams || [];
     const players = data.players || [];
 
-    // Dashboard subtitle
     const totalXP = players.reduce((s,p)=> s + (Number(p.xp)||0), 0);
     const avgXP = players.length ? Math.round(totalXP / players.length) : 0;
-    document.getElementById("dash-subtitle").textContent =
-      `${players.length} Spieler · Ø ${avgXP} XP · Teams: ${teams.map(t=>t.name).join(" vs ")}`;
 
-    // Team stand
+    document.getElementById("dash-subtitle").textContent =
+      `${players.length} Spieler · Ø ${avgXP} XP · ${teams.map(t=>t.name).join(" vs ")}`;
+
     const teamA = teams[0] || { name:"Team A", points:0 };
     const teamB = teams[1] || { name:"Team B", points:0 };
 
@@ -76,8 +70,13 @@ fetch("data.json", { cache: "no-store" })
       return `
         <div class="team-card ${tKey}">
           <div class="team-top">
-            <div class="team-name">${team.name}</div>
-            <div class="team-points">${team.points ?? 0} Punkte</div>
+            <div>
+              <div class="team-name">${team.name}</div>
+              <div class="team-points-label">Team-Punkte (Cycle)</div>
+            </div>
+            <div style="text-align:right">
+              <div class="team-points-big">${team.points ?? 0}</div>
+            </div>
           </div>
           <div class="xpbar"><div class="xpfill" style="width:${percent}%"></div></div>
           <div class="small">Anteil am Gesamtstand: ${percent}%</div>
@@ -85,10 +84,8 @@ fetch("data.json", { cache: "no-store" })
       `;
     };
 
-    teamContainer.innerHTML =
-      teamCard(teamA, aPct) + teamCard(teamB, bPct);
+    teamContainer.innerHTML = teamCard(teamA, aPct) + teamCard(teamB, bPct);
 
-    // Top lists
     renderTopList(
       "top-level",
       players,
@@ -110,22 +107,15 @@ fetch("data.json", { cache: "no-store" })
       (p)=> `${Number(p.challengeWins)||0} Siege`
     );
 
-    // Updates feed
     const updates = data.recent || [];
     const updatesContainer = document.getElementById("updates-container");
-
-    if(!updates.length){
-      updatesContainer.innerHTML = `<div class="muted">Noch keine Updates.</div>`;
-    }else{
-      updatesContainer.innerHTML = updates.map(u => `
-        <div class="feed-item">
-          <div class="feed-date">${u.date || ""}</div>
-          <div class="feed-text">${u.text || ""}</div>
-        </div>
-      `).join("");
-    }
+    updatesContainer.innerHTML = updates.length
+      ? updates.map(u => `
+          <div class="feed-item">
+            <div class="feed-date">${u.date || ""}</div>
+            <div class="feed-text">${u.text || ""}</div>
+          </div>
+        `).join("")
+      : `<div class="muted">Noch keine Updates.</div>`;
   })
-  .catch(err => {
-    console.error(err);
-    document.getElementById("dash-subtitle").textContent = "Fehler beim Laden der Daten.";
-  });
+  .catch(err => console.error(err));
