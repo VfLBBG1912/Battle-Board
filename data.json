@@ -1,0 +1,21 @@
+{
+  "cycle": {
+    "name": "Battle Cycle 01",
+    "start": "01.03.2026",
+    "end": "31.03.2026"
+  },
+  "teams": [
+    { "id": "A", "name": "Team Black", "points": 42 },
+    { "id": "B", "name": "Team Red", "points": 38 }
+  ],
+  "players": [
+    { "name": "Leon", "team": "A", "xp": 120, "level": 5, "challengeWins": 4 },
+    { "name": "Max", "team": "B", "xp": 105, "level": 4, "challengeWins": 3 },
+    { "name": "Jonas", "team": "A", "xp": 95, "level": 4, "challengeWins": 2 },
+    { "name": "Tim", "team": "B", "xp": 88, "level": 3, "challengeWins": 1 }
+  ],
+  "recent": [
+    { "date": "05.03.2026", "text": "Team Black gewinnt Abschlussspiel (+5)" },
+    { "date": "05.03.2026", "text": "Leon gewinnt Challenge gegen Max (+1 Team, +1 Sieg)" }
+  ]
+}
