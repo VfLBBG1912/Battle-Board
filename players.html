@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spieler – Battle Board</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <h1>👥 Spieler</h1>
+  <p id="cycle-info"></p>
+
+  <nav class="tabs">
+    <a class="tab" href="index.html">Dashboard</a>
+    <a class="tab active" href="players.html">Spieler</a>
+    <a class="tab" href="halloffame.html">Hall of Fame</a>
+  </nav>
+</header>
+
+<section class="card">
+  <h2>📊 Spielerübersicht</h2>
+  <div class="hint">Sortiert nach Level → XP. Skills als Sterne (0–5).</div>
+
+  <div class="toolbar">
+    <input id="player-search" class="search" placeholder="Spieler suchen…" />
+    <select id="sort" class="select">
+      <option value="level">Sortierung: Level/XP</option>
+      <option value="xp">Sortierung: XP</option>
+      <option value="challenges">Sortierung: Challenge Siege</option>
+      <option value="seasonStars">Sortierung: Season-Sterne</option>
+    </select>
+  </div>
+
+  <div id="players-page-container"></div>
+</section>
+
+<footer>
+  <p>Battle Mode Activated ⚽</p>
+</footer>
+
+<script src="players.js"></script>
+</body>
+</html>
