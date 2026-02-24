@@ -1,9 +1,13 @@
 {
   "cycle": { "name": "Battle Cycle 01", "start": "01.03.2026", "end": "31.03.2026" },
+
+  "levelXP": [0, 20, 45, 75, 110, 150, 200, 260, 330, 410, 500],
+
   "teams": [
     { "id": "A", "name": "Team Black", "points": 42 },
     { "id": "B", "name": "Team Red", "points": 38 }
   ],
+
   "players": [
     {
       "name": "Leon",
@@ -22,12 +26,32 @@
       "challengeWins": 3,
       "seasonStars": 0,
       "skills": { "DEF": 2, "ANG": 4, "AUS": 2, "INT": 3, "MEN": 2 }
+    },
+    {
+      "name": "Jonas",
+      "team": "A",
+      "xp": 95,
+      "level": 4,
+      "challengeWins": 2,
+      "seasonStars": 0,
+      "skills": { "DEF": 2, "ANG": 2, "AUS": 3, "INT": 2, "MEN": 2 }
+    },
+    {
+      "name": "Tim",
+      "team": "B",
+      "xp": 88,
+      "level": 3,
+      "challengeWins": 1,
+      "seasonStars": 0,
+      "skills": { "DEF": 1, "ANG": 3, "AUS": 2, "INT": 2, "MEN": 2 }
     }
   ],
+
   "recent": [
     { "date": "05.03.2026", "text": "Team Black gewinnt Abschlussspiel (+5)" },
     { "date": "05.03.2026", "text": "Leon gewinnt Challenge gegen Max (+1 Team, +1 Sieg)" }
   ],
+
   "hof": {
     "players": [
       { "name": "Leon", "maxLevel": 7, "maxXP": 210, "seasonStars": 2, "challengeWins": 11 },
