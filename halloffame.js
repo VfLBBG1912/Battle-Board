@@ -1,27 +1,55 @@
-function row(rank, name, value){
-  return `
-    <div class="player">
-      <strong>#${rank} ${name}</strong><br/>
-      <span style="opacity:.85">${value}</span>
+function normalize(str){ return (str || "").toString().trim().toLowerCase(); }
+
+function deriveLevel(xp, levelXP){
+  const x = Math.max(0, Number(xp) || 0);
+  const t = Array.isArray(levelXP) && levelXP.length >= 2 ? levelXP : [0, 100];
+  let idx = 0;
+  for(let i=0;i<t.length;i++){
+    if(x >= t[i]) idx = i;
+  }
+  return idx + 1;
+}
+
+function allTimeTotal(p){
+  const a = p.allTimeSkills || {};
+  return (Number(a.DEF)||0) + (Number(a.TOR)||0) + (Number(a.MAS)||0) + (Number(a.ANF)||0) + (Number(a.PLY)||0);
+}
+
+function renderList(elId, list, valueFn, valueLabelFn){
+  const el = document.getElementById(elId);
+  const top = [...list].sort((a,b)=> valueFn(b)-valueFn(a) || a.name.localeCompare(b.name)).slice(0,10);
+
+  el.innerHTML = top.map((p,i)=> `
+    <div class="mini-row">
+      <div class="mini-left">
+        <span class="rank">#${i+1}</span>
+        <span class="mini-name">${p.name}</span>
+        <span class="mini-team ${normalize(p.team).includes("alpha") ? "alpha" : normalize(p.team).includes("bravo") ? "bravo" : "joker"}">${p.team || "Joker"}</span>
+      </div>
+      <div class="mini-val">${valueLabelFn(p)}</div>
     </div>
-  `;
+  `).join("") || `<div class="muted">Keine Daten.</div>`;
 }
 
-function topList(players, key, label){
-  const sorted = [...players].sort((a,b)=> (b[key]||0)-(a[key]||0) || a.name.localeCompare(b.name));
-  return sorted.slice(0, 10).map((p,i)=> row(i+1, p.name, `${label}: ${p[key] ?? 0}`)).join("")
-    || `<p>Keine Daten.</p>`;
-}
+fetch("data.json", { cache:"no-store" })
+  .then(r=>r.json())
+  .then(data=>{
+    const players = data.players || [];
+    const levelXP = data.levelXP || [0,100];
 
-fetch("data.json", { cache: "no-store" })
-  .then(r => r.json())
-  .then(data => {
-    // Hall of Fame Daten: wenn vorhanden, nutze hof.players, sonst fallback auf data.players
-    const hofPlayers = (data.hof && data.hof.players) ? data.hof.players : (data.players || []);
+    renderList("hof-level", players,
+      (p)=> deriveLevel(p.xp, levelXP),
+      (p)=> `Level ${deriveLevel(p.xp, levelXP)}`
+    );
 
-    document.getElementById("hof-level").innerHTML = topList(hofPlayers, "maxLevel", "Max Level");
-    document.getElementById("hof-stars").innerHTML = topList(hofPlayers, "seasonStars", "Season ⭐");
-    document.getElementById("hof-challenges").innerHTML = topList(hofPlayers, "challengeWins", "Challenge Siege");
-    document.getElementById("hof-xp").innerHTML = topList(hofPlayers, "maxXP", "Max XP");
+    renderList("hof-xp", players,
+      (p)=> Number(p.xp)||0,
+      (p)=> `${Number(p.xp)||0} XP`
+    );
+
+    renderList("hof-alltime-total", players,
+      (p)=> allTimeTotal(p),
+      (p)=> `${allTimeTotal(p)} Punkte`
+    );
   })
   .catch(err => console.error(err));
