@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teams – Battle Board</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <h1>🧩 Teams</h1>
+  <p id="cycle-info"></p>
+
+  <nav class="tabs">
+    <a class="tab" href="index.html">Dashboard</a>
+    <a class="tab" href="players.html">Spieler</a>
+    <a class="tab" href="halloffame.html">Hall of Fame</a>
+    <a class="tab" href="rules.html">Regeln</a>
+    <a class="tab active" href="teams.html">Teams</a>
+  </nav>
+</header>
+
+<main class="page">
+
+  <section class="card">
+    <h2>👥 Teamübersicht</h2>
+    <div class="muted">Einfacher Überblick: Wer spielt in welchem Team?</div>
+  </section>
+
+  <section class="card">
+    <div id="teams-container"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Battle Mode Activated ⚽</p>
+</footer>
+
+<script>
+fetch("data.json", { cache:"no-store" })
+  .then(r => r.json())
+  .then(data => {
+    // cycle info (optional)
+    const ci = document.getElementById("cycle-info");
+    if(ci && data.cycle){
+      ci.textContent = `${data.cycle.name} | ${data.cycle.start} - ${data.cycle.end}`;
+    }
+
+    const players = data.players || [];
+    const groups = {
+      "Alpha Team": [],
+      "Team Bravo": [],
+      "Joker": []
+    };
+
+    players.forEach(p => {
+      const t = (p.team || "Joker").trim();
+      if(!groups[t]) groups[t] = [];
+      groups[t].push(p.name);
+    });
+
+    // Sort names A-Z
+    Object.keys(groups).forEach(k => groups[k].sort((a,b)=> a.localeCompare(b)));
+
+    const container = document.getElementById("teams-container");
+
+    const renderGroup = (teamName, keyClass) => {
+      const list = groups[teamName] || [];
+      return `
+        <div class="group">
+          <div class="group-head">
+            <h3>${teamName}</h3>
+            <div class="group-pill">${list.length} Spieler</div>
+          </div>
+
+          <div class="player-grid">
+            ${list.map(n => `
+              <div class="player-card ${keyClass}">
+                <div class="player-top">
+                  <div class="player-name">${n}</div>
+                  <span class="badge-team ${keyClass}">${teamName}</span>
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    };
+
+    container.innerHTML =
+      renderGroup("Alpha Team", "alpha") +
+      renderGroup("Team Bravo", "bravo") +
+      renderGroup("Joker", "joker");
+  })
+  .catch(err => console.error(err));
+</script>
+
+</body>
+</html>
