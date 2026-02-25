@@ -38,5 +38,9 @@
     { "name": "Raoul", "team": "Joker", "xp": 0, "challengeWins": 0, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } }
   ],
 
-  "recent": []
+  "recent": [
+    "Team Bravo gewinnt das Warm-up gegen Alpha Team +2",
+    "Taktik-Spiel endet unentschieden +1",
+    "Team Bravo gewinnt das Abschlussspiel gegen Alpha Team +5"
+  ]
 }
