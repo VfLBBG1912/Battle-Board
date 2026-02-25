@@ -46,6 +46,88 @@ function renderTopList(containerId, players, valueFn, labelFn){
   `).join("") || `<div class="muted">Keine Daten.</div>`;
 }
 
+/* ---------------- Feed helpers ---------------- */
+
+function parseTs(ts){
+  const d = ts ? new Date(ts) : new Date();
+  return isNaN(d.getTime()) ? new Date() : d;
+}
+
+function fmtDate(d){
+  const dd = String(d.getDate()).padStart(2, "0");
+  const mm = String(d.getMonth()+1).padStart(2, "0");
+  const yy = d.getFullYear();
+  return `${dd}.${mm}.${yy}`;
+}
+
+function feedIcon(item){
+  const ev = normalize(item.event);
+  if(ev === "win") return "⚔️";
+  if(ev === "draw") return "🤝";
+  if(ev === "challenge") return "🎯";
+  return "📝";
+}
+
+function scopeLabel(scope){
+  const s = normalize(scope);
+  if(s === "training") return "Training";
+  if(s === "match") return "Spiel";
+  if(s === "private") return "Private";
+  return "Event";
+}
+
+function normalizeRecent(raw){
+  // Backward compatible: Strings -> objects
+  if(!Array.isArray(raw)) return [];
+  return raw.map(x=>{
+    if(typeof x === "string"){
+      return { ts: new Date().toISOString(), scope:"training", event:"win", text:x, points:null };
+    }
+    const obj = x || {};
+    return {
+      ts: obj.ts || obj.date || new Date().toISOString(),
+      scope: obj.scope || "training",
+      event: obj.event || "win",
+      text: obj.text || "",
+      points: (obj.points === 0 || obj.points) ? Number(obj.points) : null
+    };
+  });
+}
+
+function renderFeed(container, recent){
+  const items = normalizeRecent(recent)
+    .sort((a,b)=> parseTs(b.ts) - parseTs(a.ts)); // newest first
+
+  if(!items.length){
+    container.innerHTML = `<div class="muted">Noch keine Updates.</div>`;
+    return;
+  }
+
+  container.innerHTML = items.map(it=>{
+    const d = parseTs(it.ts);
+    const dateStr = fmtDate(d);
+    const icon = feedIcon(it);
+    const scope = normalize(it.scope);
+    const badge = scopeLabel(scope);
+    const pts = (it.points === 0 || it.points) ? `+${it.points}` : "";
+
+    return `
+      <div class="feed-item feed-${scope}">
+        <div class="feed-left">
+          <div class="feed-icon">${icon}</div>
+        </div>
+        <div class="feed-mid">
+          <div class="feed-topline">
+            <span class="feed-date">${dateStr}</span>
+            <span class="feed-badge feed-badge-${scope}">${badge}</span>
+          </div>
+          <div class="feed-text">${it.text} ${pts ? `<span class="feed-points">${pts}</span>` : ""}</div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
 fetch("data.json", { cache: "no-store" })
   .then(r => r.json())
   .then(data => {
@@ -62,7 +144,6 @@ fetch("data.json", { cache: "no-store" })
     document.getElementById("dash-subtitle").textContent =
       `${players.length} Spieler · Ø ${avgXP} XP · ${teams.map(t=>t.name).join(" vs ")}`;
 
-    // Team Stand
     const teamA = teams[0] || { name:"Team A", points:0 };
     const teamB = teams[1] || { name:"Team B", points:0 };
 
@@ -92,7 +173,6 @@ fetch("data.json", { cache: "no-store" })
 
     teamContainer.innerHTML = teamCard(teamA, aPct) + teamCard(teamB, bPct);
 
-    // Top Spieler
     renderTopList(
       "top-level",
       players,
@@ -100,7 +180,6 @@ fetch("data.json", { cache: "no-store" })
       (p)=> `Level ${deriveLevel(p.xp, data.levelXP)}`
     );
 
-    // NEU: Top Season Skills (statt Top XP)
     renderTopList(
       "top-season-skills",
       players,
@@ -115,16 +194,8 @@ fetch("data.json", { cache: "no-store" })
       (p)=> `${Number(p.challengeWins)||0} Siege`
     );
 
-    // Updates
-    const updates = data.recent || [];
+    // Feed
     const updatesContainer = document.getElementById("updates-container");
-    updatesContainer.innerHTML = updates.length
-      ? updates.map(u => `
-          <div class="feed-item">
-            <div class="feed-date">${u.date || ""}</div>
-            <div class="feed-text">${u.text || ""}</div>
-          </div>
-        `).join("")
-      : `<div class="muted">Noch keine Updates.</div>`;
+    renderFeed(updatesContainer, data.recent || []);
   })
   .catch(err => console.error(err));
