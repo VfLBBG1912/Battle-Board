@@ -612,3 +612,93 @@ tr:last-child td{ border-bottom:none; }
 .hof-value{ text-align:right; flex: 0 0 auto; }
 .hof-number{ font-weight: 1300; font-size: 34px; line-height: 1; }
 .hof-label{ margin-top: 4px; color: var(--muted); font-weight: 900; font-size: 12px; }
+
+/* ---------------- Enhanced Feed (Icons + Badges + Scope) ---------------- */
+
+.feed-item{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+
+.feed-left{
+  flex:0 0 auto;
+}
+
+.feed-icon{
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 14px;
+  border:1px solid var(--line);
+  background: var(--chip);
+  font-size: 22px;
+}
+
+.feed-mid{
+  flex:1 1 auto;
+  min-width:0;
+}
+
+.feed-topline{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom: 4px;
+}
+
+.feed-date{
+  font-weight:1000;
+  color:#e2e8f0;
+}
+
+.feed-badge{
+  display:inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,0.03);
+  font-weight: 1000;
+  font-size: 12px;
+  color:#cbd5e1;
+}
+
+.feed-badge-training{
+  border-color: rgba(59,130,246,0.55);
+  color:#dbeafe;
+}
+
+.feed-badge-match{
+  border-color: rgba(34,197,94,0.55);
+  color:#dcfce7;
+}
+
+.feed-badge-private{
+  border-color: rgba(245,158,11,0.70);
+  color:#ffedd5;
+}
+
+.feed-text{
+  color:#cbd5e1;
+  line-height:1.35;
+}
+
+.feed-points{
+  display:inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(250,204,21,0.40);
+  background: rgba(250,204,21,0.08);
+  color: #fff;
+  font-weight: 1100;
+  font-size: 12px;
+}
+
+/* Optional: slight scope tint */
+.feed-training{ }
+.feed-match{ }
+.feed-private{ }
