@@ -5,7 +5,7 @@
 
   "teams": [
     { "id": "A", "name": "Alpha Team", "points": 21 },
-    { "id": "B", "name": "Team Bravo", "points": 24 }
+    { "id": "B", "name": "Team Bravo", "points": 26 }
   ],
 
   "players": [
@@ -30,7 +30,7 @@
     { "name": "Justin", "team": "Team Bravo", "xp": 4, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Kilian", "team": "Team Bravo", "xp": 4, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Klemens", "team": "Team Bravo", "xp": 0, "challengeWins": 0, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Maurice", "team": "Team Bravo", "xp": 4, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Maurice", "team": "Team Bravo", "xp": 6, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 2, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Ferhat", "team": "Team Bravo", "xp": 0, "challengeWins": 0, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
 
     { "name": "Bastian", "team": "Joker", "xp": 0, "challengeWins": 0, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
@@ -39,6 +39,13 @@
   ],
 
 "recent": [
+  {
+    "ts": "2026-02-27T16:38:00",
+    "scope": "training",
+    "event": "win",
+    "text": "Maurice erhält 2 Skill Punkte in Anführer für die Initialisierung eines Mannschaftsabends",
+    "points": 2
+  },  
   {
     "ts": "2026-02-24T19:15:00",
     "scope": "training",
