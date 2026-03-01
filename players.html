@@ -15,9 +15,9 @@
   <nav class="tabs">
     <a class="tab" href="index.html">Dashboard</a>
     <a class="tab active" href="players.html">Spieler</a>
+    <a class="tab" href="teams.html">Teams</a>
     <a class="tab" href="halloffame.html">Hall of Fame</a>
     <a class="tab" href="rules.html">Regeln</a>
-    <a class="tab" href="teams.html">Teams</a>
   </nav>
 </header>
 
@@ -25,7 +25,7 @@
   <section class="card">
     <div style="display:flex;flex-direction:column;gap:12px;">
       <div>
-        <h2 style="margin:0 0 6px;">📊 Übersicht</h2>
+        <h2 style="margin:0 0 6px;">⚡ FUT-Card Liste</h2>
         <div class="muted" id="players-summary">Lade Daten…</div>
       </div>
 
@@ -33,9 +33,11 @@
         <input id="player-search" class="search" placeholder="Spieler suchen…" />
 
         <select id="sort" class="select">
-          <option value="level">Sortierung: Level/XP</option>
+          <option value="level">Sortierung: Level</option>
           <option value="xp">Sortierung: XP</option>
           <option value="challenges">Sortierung: Challenge Siege</option>
+          <option value="skillsSeason">Sortierung: Season Skills</option>
+          <option value="skillsAllTime">Sortierung: All-Time Skills</option>
           <option value="name">Sortierung: Name (A–Z)</option>
         </select>
       </div>
