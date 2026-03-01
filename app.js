@@ -28,6 +28,27 @@ function sumSeasonSkills(p){
   return (Number(s.DEF)||0) + (Number(s.TOR)||0) + (Number(s.MAS)||0) + (Number(s.ANF)||0) + (Number(s.PLY)||0);
 }
 
+/* ---------- Avatar helpers (NEU) ---------- */
+
+function initials(name){
+  const parts = (name || "").trim().split(/\s+/).filter(Boolean);
+  const a = (parts[0] || "").slice(0,1).toUpperCase();
+  const b = (parts[1] || "").slice(0,1).toUpperCase();
+  return (a + b) || "P";
+}
+
+function avatarHTML(p){
+  const photo = (p.photo || "").trim();
+  if(photo){
+    // Wenn Foto fehlt / falscher Pfad -> Fallback Initialen
+    return `<img class="mini-avatar" src="${photo}" alt="${p.name}" loading="lazy"
+      onerror="this.outerHTML='<div class=&quot;mini-avatar fallback&quot;>${initials(p.name)}</div>'" />`;
+  }
+  return `<div class="mini-avatar fallback">${initials(p.name)}</div>`;
+}
+
+/* ---------- Top-Listen Rendering (mit Foto) ---------- */
+
 function renderTopList(containerId, players, valueFn, labelFn){
   const el = document.getElementById(containerId);
   const sorted = [...players]
@@ -38,6 +59,7 @@ function renderTopList(containerId, players, valueFn, labelFn){
     <div class="mini-row">
       <div class="mini-left">
         <span class="rank">#${i+1}</span>
+        ${avatarHTML(p)}
         <span class="mini-name">${p.name}</span>
         <span class="mini-team ${teamKey(p.team)}">${p.team || "Joker"}</span>
       </div>
@@ -77,7 +99,6 @@ function scopeLabel(scope){
 }
 
 function normalizeRecent(raw){
-  // Backward compatible: Strings -> objects
   if(!Array.isArray(raw)) return [];
   return raw.map(x=>{
     if(typeof x === "string"){
@@ -128,6 +149,8 @@ function renderFeed(container, recent){
   }).join("");
 }
 
+/* ---------------- Main ---------------- */
+
 fetch("data.json", { cache: "no-store" })
   .then(r => r.json())
   .then(data => {
@@ -173,6 +196,7 @@ fetch("data.json", { cache: "no-store" })
 
     teamContainer.innerHTML = teamCard(teamA, aPct) + teamCard(teamB, bPct);
 
+    // TOP LISTEN (jetzt mit Mini-Foto)
     renderTopList(
       "top-level",
       players,
@@ -194,8 +218,6 @@ fetch("data.json", { cache: "no-store" })
       (p)=> `${Number(p.challengeWins)||0} Siege`
     );
 
-    // Feed
-    const updatesContainer = document.getElementById("updates-container");
-    renderFeed(updatesContainer, data.recent || []);
+    renderFeed(document.getElementById("updates-container"), data.recent || []);
   })
   .catch(err => console.error(err));
