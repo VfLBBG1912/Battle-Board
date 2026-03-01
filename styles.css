@@ -585,7 +585,7 @@ tr:last-child td{ border-bottom:none; }
   font-weight: 900;
 }
 
-/* ---------- Skills: schöner als Grid ---------- */
+/* ---------- Skills: Grid (fix für "passt nicht ganz") ---------- */
 
 .skills-block{
   margin-top: 12px;
@@ -617,15 +617,9 @@ tr:last-child td{ border-bottom:none; }
 }
 
 .skill-grid{
-  display:grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
   gap: 10px;
-}
-@media(max-width: 900px){
-  .skill-grid{ grid-template-columns: repeat(3, 1fr); }
-}
-@media(max-width: 520px){
-  .skill-grid{ grid-template-columns: repeat(2, 1fr); }
 }
 
 .skill-tile{
@@ -633,23 +627,36 @@ tr:last-child td{ border-bottom:none; }
   background: rgba(11,18,32,0.65);
   border-radius: 14px;
   padding: 10px 10px;
-  text-align:center;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+
+  min-height: 64px;
 }
 
 .skill-label{
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 1200;
   color: var(--muted);
-  letter-spacing: .6px;
-  margin-bottom: 6px;
+  letter-spacing: .8px;
+  margin: 0;
 }
 
 .skill-stars{
   font-weight: 1400;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   line-height: 1;
-  font-size: 20px;
+  font-size: 19px;
+
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .skill-stars.season{
   color: var(--season);
   text-shadow: 0 0 10px rgba(56,189,248,0.45);
@@ -763,5 +770,3 @@ tr:last-child td{ border-bottom:none; }
 }
 .podium-name{ font-weight:1200; margin-top: 10px; font-size: 18px; }
 .podium-sub{ color: var(--muted); font-size: 13px; margin-top: 4px; }
-
-/* (Ende) */
