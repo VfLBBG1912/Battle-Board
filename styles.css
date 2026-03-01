@@ -241,6 +241,25 @@ footer{
 .mini-team.bravo{ border-color: rgba(239,68,68,0.6); color:#fee2e2; }
 .mini-team.joker{ border-color: rgba(245,158,11,0.7); color:#ffedd5; }
 
+/* ---------- NEU: Mini-Avatare im Dashboard ---------- */
+.mini-avatar{
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid rgba(51,65,85,0.9);
+  background: rgba(11,18,32,0.75);
+  flex: 0 0 auto;
+}
+.mini-avatar.fallback{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 1100;
+  font-size: 13px;
+  color:#e2e8f0;
+}
+
 /* ---------------- Feed (Enhanced) ---------------- */
 
 .feed{ margin-top:12px; display:flex; flex-direction:column; gap:10px; }
@@ -390,20 +409,6 @@ th{
   color: #e2e8f0;
 }
 tr:last-child td{ border-bottom:none; }
-
-/* ---------------- Admin textareas ---------------- */
-
-.admin-textarea{
-  width:100%;
-  min-height:140px;
-  margin-top:10px;
-  border-radius:12px;
-  border:1px solid var(--line);
-  background:var(--chip);
-  color:#fff;
-  padding:10px;
-}
-.admin-textarea-large{ min-height:220px; }
 
 /* =========================================================
    FUT CARD DESIGN (Players page)
@@ -615,187 +620,3 @@ tr:last-child td{ border-bottom:none; }
   font-size: 11px;
   margin-right: 4px;
 }
-
-/* =========================================================
-   Hall of Fame special touch
-   ========================================================= */
-
-.hof-header{
-  background:
-    radial-gradient(900px 250px at 50% 0%, rgba(250,204,21,0.18), transparent 55%),
-    radial-gradient(900px 250px at 15% 0%, rgba(59,130,246,0.16), transparent 55%),
-    radial-gradient(900px 250px at 85% 0%, rgba(239,68,68,0.14), transparent 55%),
-    var(--card);
-}
-
-.hof-hero{
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 12px;
-}
-
-.hof-kicker{
-  font-weight: 1000;
-  letter-spacing: .5px;
-  color: #e2e8f0;
-  opacity: .95;
-  margin-bottom: 2px;
-}
-
-.hof-card{
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
-    var(--card);
-}
-
-.hof-section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.podium{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap:12px;
-  margin-top: 12px;
-}
-@media(min-width: 860px){
-  .podium{ grid-template-columns: 1fr 1fr 1fr; align-items:end; }
-}
-
-.podium-card{
-  border:1px solid var(--line);
-  border-radius: 16px;
-  padding: 14px;
-  background: rgba(255,255,255,0.03);
-  position: relative;
-  overflow:hidden;
-  text-align:center;
-}
-.podium-card.rank-1{
-  transform: translateY(-10px);
-  border-color: rgba(250,204,21,0.45);
-  box-shadow: 0 0 0 2px rgba(250,204,21,0.10) inset, 0 18px 50px rgba(0,0,0,0.25);
-}
-.podium-card.rank-2{ transform: translateY(0px); }
-.podium-card.rank-3{ transform: translateY(6px); }
-
-.podium-card.alpha{ border-left: 7px solid var(--alpha); }
-.podium-card.bravo{ border-left: 7px solid var(--bravo); }
-.podium-card.joker{ border-left: 7px solid var(--joker); }
-
-.podium-medal{
-  font-size: 34px;
-  margin-bottom: 6px;
-  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.35));
-}
-.podium-name{
-  font-weight: 1100;
-  font-size: 20px;
-}
-.podium-team{
-  display:inline-block;
-  margin-top: 6px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: var(--chip);
-  font-weight: 1000;
-  font-size: 12px;
-  color: #cbd5e1;
-}
-.podium-team.alpha{ border-color: rgba(59,130,246,0.6); color:#dbeafe; }
-.podium-team.bravo{ border-color: rgba(239,68,68,0.6); color:#fee2e2; }
-.podium-team.joker{ border-color: rgba(245,158,11,0.7); color:#ffedd5; }
-
-.podium-score{
-  margin-top: 12px;
-  border-top: 1px solid rgba(51,65,85,0.6);
-  padding-top: 10px;
-}
-.podium-number{
-  font-weight: 1200;
-  font-size: 44px;
-  line-height: 1;
-  color: #fff;
-  text-shadow: 0 0 12px rgba(250,204,21,0.12);
-}
-.podium-label{
-  margin-top: 4px;
-  color: var(--muted);
-  font-weight: 900;
-  font-size: 12px;
-}
-
-.hof-list{
-  margin-top: 12px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.hof-row{
-  border:1px solid var(--line);
-  border-radius: 16px;
-  background: rgba(255,255,255,0.03);
-  padding: 12px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  overflow:hidden;
-}
-.hof-row.alpha{ border-left: 7px solid var(--alpha); }
-.hof-row.bravo{ border-left: 7px solid var(--bravo); }
-.hof-row.joker{ border-left: 7px solid var(--joker); }
-
-.hof-rank{
-  width: 62px;
-  height: 54px;
-  border-radius: 14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight: 1200;
-  background: var(--chip);
-  border:1px solid var(--line);
-  color:#e2e8f0;
-  flex: 0 0 auto;
-}
-.hof-rank.gold{
-  border-color: rgba(250,204,21,0.55);
-  box-shadow: 0 0 0 2px rgba(250,204,21,0.10) inset;
-}
-.hof-rank.silver{
-  border-color: rgba(226,232,240,0.55);
-  box-shadow: 0 0 0 2px rgba(226,232,240,0.10) inset;
-}
-.hof-rank.bronze{
-  border-color: rgba(251,146,60,0.55);
-  box-shadow: 0 0 0 2px rgba(251,146,60,0.10) inset;
-}
-
-.hof-main{ flex: 1 1 auto; min-width: 0; }
-.hof-name{ font-weight: 1100; font-size: 18px; }
-.hof-meta{ margin-top: 6px; }
-
-.hof-team{
-  display:inline-block;
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: var(--chip);
-  font-weight: 1000;
-  font-size: 12px;
-  color:#cbd5e1;
-}
-.hof-team.alpha{ border-color: rgba(59,130,246,0.6); color:#dbeafe; }
-.hof-team.bravo{ border-color: rgba(239,68,68,0.6); color:#fee2e2; }
-.hof-team.joker{ border-color: rgba(245,158,11,0.7); color:#ffedd5; }
-
-.hof-value{ text-align:right; flex: 0 0 auto; }
-.hof-number{ font-weight: 1300; font-size: 34px; line-height: 1; }
-.hof-label{ margin-top: 4px; color: var(--muted); font-weight: 900; font-size: 12px; }
