@@ -135,6 +135,16 @@ function render(players, levelXP, cycle){
   }
 }
 
+function skillTile(label, value, type){
+  // type: "season" | "alltime"
+  return `
+    <div class="skill-tile ${type}">
+      <div class="skill-label">${label}</div>
+      <div class="skill-stars ${type}">${stars(value)}</div>
+    </div>
+  `;
+}
+
 function futCard(p, levelXP){
   const tKey = teamKey(p.team);
   const lvl = deriveLevel(p.xp, levelXP);
@@ -148,10 +158,20 @@ function futCard(p, levelXP){
   const a = p.allTimeSkills || {DEF:0,TOR:0,MAS:0,ANF:0,PLY:0};
 
   const photo = (p.photo || "").trim();
+
+  // ✅ NEU: Frame + Bild (zeigt nur oberes 2/3)
   const photoHtml = photo
-    ? `<img class="fut-photo" src="${photo}" alt="${p.name}" loading="lazy"
-         onerror="this.outerHTML='<div class=&quot;fut-photo fallback&quot;>${initials(p.name)}</div>'" />`
-    : `<div class="fut-photo fallback">${initials(p.name)}</div>`;
+    ? `
+      <div class="fut-photo-frame">
+        <img class="fut-photo-img" src="${photo}" alt="${p.name}" loading="lazy"
+          onerror="this.outerHTML='<div class=&quot;fut-photo-fallback&quot;>${initials(p.name)}</div>'" />
+      </div>
+    `
+    : `
+      <div class="fut-photo-frame">
+        <div class="fut-photo-fallback">${initials(p.name)}</div>
+      </div>
+    `;
 
   return `
     <div class="fut-card ${tKey}">
@@ -181,25 +201,35 @@ function futCard(p, levelXP){
       <div class="fut-bar"><div class="fut-barfill" style="width:${prog.pct}%"></div></div>
       <div class="fut-bartext">XP bis nächstes Level: ${Math.max(0, (prog.next - xp))}</div>
 
-      <div class="fut-skills">
-        <div class="fut-skill-row">
-          <span class="tag">Season</span>
-          <span class="stars season">${stars(s.DEF)}</span><span class="mini">DEF</span>
-          <span class="stars season">${stars(s.TOR)}</span><span class="mini">TOR</span>
-          <span class="stars season">${stars(s.MAS)}</span><span class="mini">MAS</span>
-          <span class="stars season">${stars(s.ANF)}</span><span class="mini">ANF</span>
-          <span class="stars season">${stars(s.PLY)}</span><span class="mini">PLY</span>
+      <!-- ✅ NEU: Skills als Grid -->
+      <div class="skills-block">
+        <div class="skills-head">
+          <span class="skills-title">Season Skills</span>
+          <span class="skills-total">${sTot}</span>
         </div>
-
-        <div class="fut-skill-row">
-          <span class="tag">All-Time</span>
-          <span class="stars alltime">${stars(a.DEF)}</span><span class="mini">DEF</span>
-          <span class="stars alltime">${stars(a.TOR)}</span><span class="mini">TOR</span>
-          <span class="stars alltime">${stars(a.MAS)}</span><span class="mini">MAS</span>
-          <span class="stars alltime">${stars(a.ANF)}</span><span class="mini">ANF</span>
-          <span class="stars alltime">${stars(a.PLY)}</span><span class="mini">PLY</span>
+        <div class="skill-grid">
+          ${skillTile("DEF", s.DEF, "season")}
+          ${skillTile("TOR", s.TOR, "season")}
+          ${skillTile("MAS", s.MAS, "season")}
+          ${skillTile("ANF", s.ANF, "season")}
+          ${skillTile("PLY", s.PLY, "season")}
         </div>
       </div>
+
+      <div class="skills-block">
+        <div class="skills-head">
+          <span class="skills-title">All-Time Skills</span>
+          <span class="skills-total">${aTot}</span>
+        </div>
+        <div class="skill-grid">
+          ${skillTile("DEF", a.DEF, "alltime")}
+          ${skillTile("TOR", a.TOR, "alltime")}
+          ${skillTile("MAS", a.MAS, "alltime")}
+          ${skillTile("ANF", a.ANF, "alltime")}
+          ${skillTile("PLY", a.PLY, "alltime")}
+        </div>
+      </div>
+
     </div>
   `;
 }
