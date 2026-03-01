@@ -13,7 +13,6 @@
   --xp1:#22c55e;
   --xp2:#3b82f6;
 
-  /* Stars */
   --season:#38bdf8;
   --alltime:#facc15;
 }
@@ -242,18 +241,69 @@ footer{
 .mini-team.bravo{ border-color: rgba(239,68,68,0.6); color:#fee2e2; }
 .mini-team.joker{ border-color: rgba(245,158,11,0.7); color:#ffedd5; }
 
-/* Feed */
+/* ---------------- Feed (Enhanced) ---------------- */
+
 .feed{ margin-top:12px; display:flex; flex-direction:column; gap:10px; }
 .feed-item{
   border:1px solid var(--line);
   border-radius: 14px;
   padding: 10px 12px;
   background: rgba(255,255,255,0.03);
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
 }
-.feed-date{ font-weight:1000; margin-bottom:4px; }
-.feed-text{ color:#cbd5e1; line-height:1.35; }
+.feed-left{ flex:0 0 auto; }
+.feed-icon{
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius: 14px;
+  border:1px solid var(--line);
+  background: var(--chip);
+  font-size: 22px;
+}
+.feed-mid{ flex:1 1 auto; min-width:0; }
 
-/* ---------------- Players Layout ---------------- */
+.feed-topline{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom: 4px;
+}
+.feed-date{ font-weight:1000; color:#e2e8f0; }
+
+.feed-badge{
+  display:inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,0.03);
+  font-weight: 1000;
+  font-size: 12px;
+  color:#cbd5e1;
+}
+.feed-badge-training{ border-color: rgba(59,130,246,0.55); color:#dbeafe; }
+.feed-badge-match{ border-color: rgba(34,197,94,0.55); color:#dcfce7; }
+.feed-badge-private{ border-color: rgba(245,158,11,0.70); color:#ffedd5; }
+
+.feed-text{ color:#cbd5e1; line-height:1.35; }
+.feed-points{
+  display:inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(250,204,21,0.40);
+  background: rgba(250,204,21,0.08);
+  color: #fff;
+  font-weight: 1100;
+  font-size: 12px;
+}
+
+/* ---------------- Groups / generic player cards (teams page) ---------------- */
 
 .group{ margin-top:10px; }
 .group-head{
@@ -320,97 +370,7 @@ footer{
 .badge-team.bravo{ border-color: rgba(239,68,68,0.6); color:#fee2e2; }
 .badge-team.joker{ border-color: rgba(245,158,11,0.7); color:#ffedd5; }
 
-/* Big numbers */
-.big-row{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:10px;
-}
-.big-kpi{
-  flex:1;
-  min-width: 130px;
-  border:1px solid var(--line);
-  border-radius: 14px;
-  background: var(--chip);
-  padding: 10px 10px;
-}
-.big-kpi .label{
-  color: var(--muted);
-  font-weight:900;
-  font-size:12px;
-}
-.big-kpi .value{
-  font-weight:1200;
-  font-size:36px;
-  line-height:1;
-  margin-top:6px;
-}
-.big-kpi .sub{
-  color: var(--muted);
-  font-weight:900;
-  font-size:12px;
-  margin-top:6px;
-}
-
-/* Skills */
-.skill-block{
-  margin-top: 12px;
-  border-top: 1px solid rgba(51,65,85,0.6);
-  padding-top: 10px;
-}
-.skill-title{
-  font-weight:1100;
-  margin-bottom:8px;
-}
-.skill-grid{
-  display:grid;
-  grid-template-columns: 1fr;
-  gap:8px;
-}
-@media(min-width:860px){
-  .skill-grid{ grid-template-columns: 1fr 1fr; }
-}
-.skill-row{
-  border:1px solid var(--line);
-  border-radius: 12px;
-  background: rgba(255,255,255,0.03);
-  padding: 10px;
-}
-.skill-row .name{ font-weight:1000; }
-.skill-row .bars{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:8px;
-}
-.skill-chip{
-  border:1px solid var(--line);
-  background: var(--chip);
-  border-radius: 999px;
-  padding: 6px 10px;
-  font-weight:1000;
-  font-size:13px;
-}
-.stars{
-  letter-spacing:2px;
-  margin-left: 8px;
-  font-weight: 1000;
-}
-
-/* ✅ Bigger & clearer stars (your request) */
-.skill-chip:nth-child(1) .stars{
-  color: var(--season);
-  font-size: 22px;
-  text-shadow: 0 0 6px rgba(56,189,248,0.45);
-}
-.skill-chip:nth-child(2) .stars{
-  color: var(--alltime);
-  font-size: 24px;
-  text-shadow: 0 0 8px rgba(250,204,21,0.55);
-}
-
-/* ---------------- Rules page table formatting ---------------- */
+/* ---------------- Rules page tables ---------------- */
 
 table{
   width: 100%;
@@ -431,7 +391,234 @@ th{
 }
 tr:last-child td{ border-bottom:none; }
 
-/* ---------------- Hall of Fame "special touch" ---------------- */
+/* ---------------- Admin textareas ---------------- */
+
+.admin-textarea{
+  width:100%;
+  min-height:140px;
+  margin-top:10px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:var(--chip);
+  color:#fff;
+  padding:10px;
+}
+.admin-textarea-large{ min-height:220px; }
+
+/* =========================================================
+   FUT CARD DESIGN (Players page)
+   ========================================================= */
+
+.fut-grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:12px;
+  margin-top:12px;
+}
+@media(min-width:860px){
+  .fut-grid{ grid-template-columns: 1fr 1fr; }
+}
+@media(min-width:1080px){
+  .fut-grid{ grid-template-columns: 1fr 1fr 1fr; }
+}
+
+.fut-card{
+  position:relative;
+  border-radius: 18px;
+  border: 1px solid rgba(148,163,184,0.25);
+  background:
+    radial-gradient(800px 220px at 50% 0%, rgba(255,255,255,0.10), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)),
+    rgba(255,255,255,0.03);
+  overflow:hidden;
+  padding: 12px;
+  box-shadow: 0 18px 55px rgba(0,0,0,0.25);
+}
+
+.fut-card.alpha{ border-left: 7px solid var(--alpha); }
+.fut-card.bravo{ border-left: 7px solid var(--bravo); }
+.fut-card.joker{ border-left: 7px solid var(--joker); }
+
+.fut-shine{
+  position:absolute;
+  inset:-40% -30%;
+  background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.12) 50%, transparent 65%);
+  transform: rotate(10deg);
+  opacity:.55;
+  pointer-events:none;
+}
+
+.fut-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start;
+}
+
+.fut-rating{
+  width:78px;
+  border-radius:16px;
+  border: 1px solid rgba(51,65,85,0.8);
+  background: rgba(11,18,32,0.75);
+  padding: 10px 8px;
+  text-align:center;
+}
+.fut-lvl{
+  font-weight: 1300;
+  font-size: 34px;
+  line-height: 1;
+}
+.fut-lbl{
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 1000;
+  color: var(--muted);
+  letter-spacing: .6px;
+}
+
+.fut-portrait{
+  flex: 1 1 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:8px;
+}
+
+.fut-photo{
+  width: 96px;
+  height: 96px;
+  border-radius: 18px;
+  object-fit: cover;
+  border: 1px solid rgba(51,65,85,0.9);
+  background: rgba(11,18,32,0.75);
+}
+.fut-photo.fallback{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 1200;
+  font-size: 28px;
+  color:#e2e8f0;
+}
+
+.fut-teambadge{
+  display:inline-block;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(51,65,85,0.9);
+  background: rgba(11,18,32,0.75);
+  font-weight: 1000;
+  font-size: 12px;
+  color:#cbd5e1;
+}
+.fut-teambadge.alpha{ border-color: rgba(59,130,246,0.55); color:#dbeafe; }
+.fut-teambadge.bravo{ border-color: rgba(239,68,68,0.55); color:#fee2e2; }
+.fut-teambadge.joker{ border-color: rgba(245,158,11,0.65); color:#ffedd5; }
+
+.fut-name{
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 1200;
+  letter-spacing: .2px;
+}
+
+.fut-stats{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:8px;
+  margin-top: 10px;
+}
+.fut-stat{
+  border-radius: 14px;
+  border: 1px solid rgba(51,65,85,0.85);
+  background: rgba(11,18,32,0.75);
+  padding: 8px;
+  text-align:center;
+}
+.fut-stat .k{
+  font-size: 11px;
+  font-weight: 1100;
+  color: var(--muted);
+  letter-spacing: .4px;
+}
+.fut-stat .v{
+  margin-top: 4px;
+  font-size: 20px;
+  font-weight: 1300;
+}
+
+.fut-bar{
+  margin-top: 10px;
+  height: 10px;
+  background: rgba(51,65,85,0.75);
+  border-radius: 999px;
+  overflow:hidden;
+  border: 1px solid rgba(51,65,85,0.9);
+}
+.fut-barfill{
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--xp1), var(--xp2));
+}
+.fut-bartext{
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.fut-skills{
+  margin-top: 10px;
+  border-top: 1px solid rgba(51,65,85,0.6);
+  padding-top: 10px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.fut-skill-row{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.tag{
+  font-size: 12px;
+  font-weight: 1100;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(51,65,85,0.9);
+  background: rgba(11,18,32,0.75);
+  color:#cbd5e1;
+  margin-right: 2px;
+}
+
+.stars{
+  letter-spacing:2px;
+  font-weight: 1100;
+}
+
+.stars.season{
+  color: var(--season);
+  font-size: 18px;
+  text-shadow: 0 0 6px rgba(56,189,248,0.45);
+}
+.stars.alltime{
+  color: var(--alltime);
+  font-size: 19px;
+  text-shadow: 0 0 8px rgba(250,204,21,0.55);
+}
+
+.mini{
+  color: var(--muted);
+  font-weight: 1100;
+  font-size: 11px;
+  margin-right: 4px;
+}
+
+/* =========================================================
+   Hall of Fame special touch
+   ========================================================= */
 
 .hof-header{
   background:
@@ -612,93 +799,3 @@ tr:last-child td{ border-bottom:none; }
 .hof-value{ text-align:right; flex: 0 0 auto; }
 .hof-number{ font-weight: 1300; font-size: 34px; line-height: 1; }
 .hof-label{ margin-top: 4px; color: var(--muted); font-weight: 900; font-size: 12px; }
-
-/* ---------------- Enhanced Feed (Icons + Badges + Scope) ---------------- */
-
-.feed-item{
-  display:flex;
-  gap:12px;
-  align-items:flex-start;
-}
-
-.feed-left{
-  flex:0 0 auto;
-}
-
-.feed-icon{
-  width:44px;
-  height:44px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius: 14px;
-  border:1px solid var(--line);
-  background: var(--chip);
-  font-size: 22px;
-}
-
-.feed-mid{
-  flex:1 1 auto;
-  min-width:0;
-}
-
-.feed-topline{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom: 4px;
-}
-
-.feed-date{
-  font-weight:1000;
-  color:#e2e8f0;
-}
-
-.feed-badge{
-  display:inline-block;
-  padding: 4px 10px;
-  border-radius: 999px;
-  border:1px solid var(--line);
-  background: rgba(255,255,255,0.03);
-  font-weight: 1000;
-  font-size: 12px;
-  color:#cbd5e1;
-}
-
-.feed-badge-training{
-  border-color: rgba(59,130,246,0.55);
-  color:#dbeafe;
-}
-
-.feed-badge-match{
-  border-color: rgba(34,197,94,0.55);
-  color:#dcfce7;
-}
-
-.feed-badge-private{
-  border-color: rgba(245,158,11,0.70);
-  color:#ffedd5;
-}
-
-.feed-text{
-  color:#cbd5e1;
-  line-height:1.35;
-}
-
-.feed-points{
-  display:inline-block;
-  margin-left: 8px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(250,204,21,0.40);
-  background: rgba(250,204,21,0.08);
-  color: #fff;
-  font-weight: 1100;
-  font-size: 12px;
-}
-
-/* Optional: slight scope tint */
-.feed-training{ }
-.feed-match{ }
-.feed-private{ }
