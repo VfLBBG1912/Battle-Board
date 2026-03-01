@@ -15,23 +15,21 @@
   <nav class="tabs">
     <a class="tab" href="index.html">Dashboard</a>
     <a class="tab" href="players.html">Spieler</a>
+    <a class="tab active" href="teams.html">Teams</a>
     <a class="tab" href="halloffame.html">Hall of Fame</a>
     <a class="tab" href="rules.html">Regeln</a>
-    <a class="tab active" href="teams.html">Teams</a>
   </nav>
 </header>
 
 <main class="page">
-
   <section class="card">
     <h2>👥 Teamübersicht</h2>
-    <div class="muted">Einfacher Überblick: Wer spielt in welchem Team?</div>
+    <div class="muted">Wer spielt in welchem Team?</div>
   </section>
 
   <section class="card">
     <div id="teams-container"></div>
   </section>
-
 </main>
 
 <footer>
@@ -39,35 +37,37 @@
 </footer>
 
 <script>
+function normalize(str){ return (str || "").toString().trim().toLowerCase(); }
+function teamKey(team){
+  const t = normalize(team);
+  if(t.includes("alpha")) return "alpha";
+  if(t.includes("bravo")) return "bravo";
+  return "joker";
+}
+
 fetch("data.json", { cache:"no-store" })
-  .then(r => r.json())
-  .then(data => {
-    // cycle info (optional)
+  .then(r=>r.json())
+  .then(data=>{
     const ci = document.getElementById("cycle-info");
     if(ci && data.cycle){
       ci.textContent = `${data.cycle.name} | ${data.cycle.start} - ${data.cycle.end}`;
     }
 
     const players = data.players || [];
-    const groups = {
-      "Alpha Team": [],
-      "Team Bravo": [],
-      "Joker": []
-    };
+    const groups = { "Alpha Team": [], "Team Bravo": [], "Joker": [] };
 
-    players.forEach(p => {
+    players.forEach(p=>{
       const t = (p.team || "Joker").trim();
       if(!groups[t]) groups[t] = [];
       groups[t].push(p.name);
     });
 
-    // Sort names A-Z
-    Object.keys(groups).forEach(k => groups[k].sort((a,b)=> a.localeCompare(b)));
+    Object.keys(groups).forEach(k=> groups[k].sort((a,b)=> a.localeCompare(b)));
 
     const container = document.getElementById("teams-container");
-
-    const renderGroup = (teamName, keyClass) => {
+    const renderGroup = (teamName) => {
       const list = groups[teamName] || [];
+      const key = teamKey(teamName);
       return `
         <div class="group">
           <div class="group-head">
@@ -76,11 +76,11 @@ fetch("data.json", { cache:"no-store" })
           </div>
 
           <div class="player-grid">
-            ${list.map(n => `
-              <div class="player-card ${keyClass}">
+            ${list.map(n=>`
+              <div class="player-card ${key}">
                 <div class="player-top">
                   <div class="player-name">${n}</div>
-                  <span class="badge-team ${keyClass}">${teamName}</span>
+                  <span class="badge-team ${key}">${teamName}</span>
                 </div>
               </div>
             `).join("")}
@@ -90,11 +90,11 @@ fetch("data.json", { cache:"no-store" })
     };
 
     container.innerHTML =
-      renderGroup("Alpha Team", "alpha") +
-      renderGroup("Team Bravo", "bravo") +
-      renderGroup("Joker", "joker");
+      renderGroup("Alpha Team") +
+      renderGroup("Team Bravo") +
+      renderGroup("Joker");
   })
-  .catch(err => console.error(err));
+  .catch(err=>console.error(err));
 </script>
 
 </body>
