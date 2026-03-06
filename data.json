@@ -4,41 +4,76 @@
   "levelXP": [0, 20, 45, 75, 110, 150, 200, 260, 330, 410, 500, 600, 720],
 
   "teams": [
-    { "id": "A", "name": "Alpha Team", "points": 63 },
-    { "id": "B", "name": "Team Bravo", "points": 64 }
+    { "id": "A", "name": "Alpha Team", "points": 93 },
+    { "id": "B", "name": "Team Bravo", "points": 85 }
   ],
 
   "players": [
-    { "name": "David", "team": "Alpha Team", "photo": "images/players/david.jpg", "xp": 10, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Daniel", "team": "Alpha Team", "photo": "images/players/daniel.jpg", "xp": 11, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 1 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Leon", "team": "Alpha Team", "photo": "images/players/leon.jpg", "xp": 7, "challengeWins": 0, "seasonSkills": { "DEF": 0, "TOR": 1, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Noel", "team": "Alpha Team", "photo": "images/players/noel.jpg", "xp": 12, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 1, "MAS": 0, "ANF": 0, "PLY": 1 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Imran", "team": "Alpha Team", "photo": "images/players/imran.jpg", "xp": 10, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Sören", "team": "Alpha Team", "photo": "images/players/sören.jpg", "xp": 13, "challengeWins": 3, "seasonSkills": { "DEF": 0, "TOR": 1, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Jan", "team": "Alpha Team", "photo": "images/players/jan.jpg", "xp": 13, "challengeWins": 3, "seasonSkills": { "DEF": 1, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Bennet", "team": "Alpha Team", "photo": "images/players/bennet.jpg", "xp": 4, "challengeWins": 0, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Erich", "team": "Alpha Team", "photo": "images/players/erich.jpg", "xp": 8, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Joey", "team": "Alpha Team", "photo": "images/players/joey.jpg", "xp": 10, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "David", "team": "Alpha Team", "photo": "images/players/david.jpg", "xp": 19, "challengeWins": 4, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Daniel", "team": "Alpha Team", "photo": "images/players/daniel.jpg", "xp": 21, "challengeWins": 4, "seasonSkills": { "DEF": 1, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 1 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Leon", "team": "Alpha Team", "photo": "images/players/leon.jpg", "xp": 9, "challengeWins": 0, "seasonSkills": { "DEF": 0, "TOR": 1, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Noel", "team": "Alpha Team", "photo": "images/players/noel.jpg", "xp": 22, "challengeWins": 4, "seasonSkills": { "DEF": 0, "TOR": 1, "MAS": 0, "ANF": 0, "PLY": 2 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Imran", "team": "Alpha Team", "photo": "images/players/imran.jpg", "xp": 19, "challengeWins": 4, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Sören", "team": "Alpha Team", "photo": "images/players/sören.jpg", "xp": 22, "challengeWins": 5, "seasonSkills": { "DEF": 0, "TOR": 1, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Jan", "team": "Alpha Team", "photo": "images/players/jan.jpg", "xp": 23, "challengeWins": 5, "seasonSkills": { "DEF": 2, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Bennet", "team": "Alpha Team", "photo": "images/players/bennet.jpg", "xp": 6, "challengeWins": 0, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Erich", "team": "Alpha Team", "photo": "images/players/erich.jpg", "xp": 17, "challengeWins": 4, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Joey", "team": "Alpha Team", "photo": "images/players/joey.jpg", "xp": 19, "challengeWins": 4, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Lars", "team": "Alpha Team", "photo": "images/players/lars.jpg", "xp": 2, "challengeWins": 0, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
 
-    { "name": "Steffen", "team": "Team Bravo", "photo": "images/players/steffen.jpg", "xp": 15, "challengeWins": 4, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Steffen", "team": "Team Bravo", "photo": "images/players/steffen.jpg", "xp": 19, "challengeWins": 5, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Max", "team": "Team Bravo", "photo": "images/players/max.jpg", "xp": 4, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Rille", "team": "Team Bravo", "photo": "images/players/rille.jpg", "xp": 0, "challengeWins": 0, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Tim", "team": "Team Bravo", "photo": "images/players/tim.jpg", "xp": 14, "challengeWins": 3, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 1 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Tim", "team": "Team Bravo", "photo": "images/players/tim.jpg", "xp": 19, "challengeWins": 4, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 2 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Pascal", "team": "Team Bravo", "photo": "images/players/pascal.jpg", "xp": 12, "challengeWins": 3, "seasonSkills": { "DEF": 1, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Hauke", "team": "Team Bravo", "photo": "images/players/hauke.jpg", "xp": 13, "challengeWins": 3, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Hauke", "team": "Team Bravo", "photo": "images/players/hauke.jpg", "xp": 17, "challengeWins": 4, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Justin", "team": "Team Bravo", "photo": "images/players/justin.jpg", "xp": 4, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Kilian", "team": "Team Bravo", "photo": "images/players/kilian.jpg", "xp": 13, "challengeWins": 3, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Kilian", "team": "Team Bravo", "photo": "images/players/kilian.jpg", "xp": 17, "challengeWins": 4, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Klemens", "team": "Team Bravo", "photo": "images/players/klemens.jpg", "xp": 3, "challengeWins": 0, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 1 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Maurice", "team": "Team Bravo", "photo": "images/players/maurice.jpg", "xp": 10, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 2, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Ferhat", "team": "Team Bravo", "photo": "images/players/ferhat.jpg", "xp": 11, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Maurice", "team": "Team Bravo", "photo": "images/players/maurice.jpg", "xp": 12, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 2, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Ferhat", "team": "Team Bravo", "photo": "images/players/ferhat.jpg", "xp": 15, "challengeWins": 3, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
 
     { "name": "Bastian", "team": "Joker", "photo": "images/players/bastian.jpg", "xp": 0, "challengeWins": 0, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Eser", "team": "Joker", "photo": "images/players/eser.jpg", "xp": 11, "challengeWins": 1, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Eser", "team": "Joker", "photo": "images/players/eser.jpg", "xp": 15, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Raoul", "team": "Joker", "photo": "images/players/raoul.jpg", "xp": 8, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } }
   ],
 
   "recent": [
+                                    {
+      "ts": "2026-03-04T09:46:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Tim und Noel erhalten einen Skillpunkt Playmaker",
+      "points": 2
+    },
+                                                    {
+      "ts": "2026-03-06T12:47:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Hoffi und Dante erhalten einen Skillpunkt Defensivmonster,
+      "points": 2
+    },
+                                                {
+      "ts": "2026-03-06T12:47:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Alpha gewinnt das Abschlussspiel +5",
+      "points": 5
+    },
+                                                {
+      "ts": "2026-03-06T12:47:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Bravo gewinnt die zweite Challenge +2",
+      "points": 2
+    },
+                                            {
+      "ts": "2026-03-06T12:47:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Alpha gewinnt die erste Challenge +2",
+      "points": 2
+    },
                                         {
       "ts": "2026-03-04T09:46:00",
       "scope": "training",
