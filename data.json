@@ -44,14 +44,14 @@
       "scope": "training",
       "event": "win",
       "text": "Joey erhält einen Skillpunkt in Defensivmonster",
-      "points": +1
+      "points": 1
     },
                                         {
       "ts": "2026-03-08T14:20:00",
       "scope": "training",
       "event": "win",
       "text": "Hauke, Erich und Kilian erhalten einen Skillpunkt in Maschine",
-      "points": +1
+      "points": 1
     },
     
                                         {
@@ -59,7 +59,7 @@
       "scope": "training",
       "event": "win",
       "text": "Klemens, Tim und Pasi erhalten einen Skillpunkt in Playmaker",
-      "points": +1
+      "points": 1
     },
     
                                         {
