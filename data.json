@@ -4,8 +4,8 @@
   "levelXP": [0, 20, 45, 75, 110, 150, 200, 260, 330, 410, 500, 600, 720],
 
   "teams": [
-    { "id": "A", "name": "Alpha Team", "points": 162 },
-    { "id": "B", "name": "Team Bravo", "points": 156 }
+    { "id": "A", "name": "Alpha Team", "points": 230 },
+    { "id": "B", "name": "Team Bravo", "points": 214 }
   ],
 
   "players": [
