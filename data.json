@@ -5,7 +5,7 @@
 
   "teams": [
     { "id": "A", "name": "Alpha Team", "points": 250 },
-    { "id": "B", "name": "Team Bravo", "points": 240 }
+    { "id": "B", "name": "Team Bravo", "points": 242 }
   ],
 
   "players": [
@@ -28,7 +28,7 @@
     { "name": "Pascal", "team": "Team Bravo", "photo": "images/players/pascal.jpg", "xp": 45, "challengeWins": 4, "seasonSkills": { "DEF": 3, "TOR": 1, "MAS": 1, "ANF": 1, "PLY": 1 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Hauke", "team": "Team Bravo", "photo": "images/players/hauke.jpg", "xp": 52, "challengeWins": 7, "seasonSkills": { "DEF": 1, "TOR": 0, "MAS": 1, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Justin", "team": "Team Bravo", "photo": "images/players/justin.jpg", "xp": 4, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
-    { "name": "Kilian", "team": "Team Bravo", "photo": "images/players/kilian.jpg", "xp": 57, "challengeWins": 8, "seasonSkills": { "DEF": 0, "TOR": 1, "MAS": 2, "ANF": 0, "PLY": 1 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
+    { "name": "Kilian", "team": "Team Bravo", "photo": "images/players/kilian.jpg", "xp": 59, "challengeWins": 8, "seasonSkills": { "DEF": 1, "TOR": 1, "MAS": 2, "ANF": 0, "PLY": 1 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Klemens", "team": "Team Bravo", "photo": "images/players/klemens.jpg", "xp": 31, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 1, "MAS": 1, "ANF": 0, "PLY": 2 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Maurice", "team": "Team Bravo", "photo": "images/players/maurice.jpg", "xp": 20, "challengeWins": 2, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 2, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
     { "name": "Ferhat", "team": "Team Bravo", "photo": "images/players/ferhat.jpg", "xp": 34, "challengeWins": 6, "seasonSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 }, "allTimeSkills": { "DEF": 0, "TOR": 0, "MAS": 0, "ANF": 0, "PLY": 0 } },
@@ -39,6 +39,81 @@
   ],
 
   "recent": [
+
+                                                       {
+      "ts": "2026-03-25T00:47:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Klemens erhält 1 Skillpunkt in Maschine",
+      "points": 2
+    },    
+    
+                                                       {
+      "ts": "2026-03-25T00:47:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Kilian erhält 1 Skillpunkt in Defensivmaschine, Maschine und Playmaker",
+      "points": 4
+    },     
+                                                       {
+      "ts": "2026-03-25T00:47:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Hauke erhält 1 Skillpunkt in Defensivmaschine",
+      "points": 2
+    },     
+                                                      {
+      "ts": "2026-03-25T00:47:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Pasi erhält 2 Skillpunkte in Defensivmaschine, 1 Skillpunkt in Torjäger, Maschine und Anführer",
+      "points": 8
+    },  
+                                                    {
+      "ts": "2026-03-25T00:47:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Steffen erhält 1 Skillpunkt in Torjäger und Playmaker",
+      "points": 4
+    },
+                                                {
+      "ts": "2026-03-25T00:47:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Joey erhält 2 Skillpunkt2 in Defensivmaschine",
+      "points": 4
+    },
+    
+                                                {
+      "ts": "2026-03-25T00:47:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Erich erhält 1 Skillpunkt in Defensivmaschine und Maschine",
+      "points": 4
+    },
+
+                                                {
+      "ts": "2026-03-25T00:47:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Jan erhält 2 Skillpunkte in Defensivmaschine",
+      "points": 2
+    },
+
+                                                {
+      "ts": "2026-03-25T00:47:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Noel erhält 1 Skillpunkt in Maschine und Anführer",
+      "points": 2
+    },
+                                            {
+      "ts": "2026-03-25T00:47:00",
+      "scope": "training",
+      "event": "win",
+      "text": "Dante erhält 3 Skillpunkte in Defensivmonster",
+      "points": 6
+    },
                                         {
       "ts": "2026-03-08T14:20:00",
       "scope": "training",
